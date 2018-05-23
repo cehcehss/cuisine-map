@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Cuisine Map</title>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">My Cuisine Map</a>
+        <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#form-section">Add
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <section id="map-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="map-container">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="form-section">
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 mx-auto">
+                        <div class="form-group">
+                            <label for="name">店名：</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" id="address">
+                        </div>
+                        <button type="button" class="btn btn-primary" id="add-btn">Add</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCUZXU4n2P-8toZ37L_-4qD72LOqy2QKnI",
+            authDomain: "html-296-elsie.firebaseapp.com",
+            databaseURL: "https://html-296-elsie.firebaseio.com",
+            projectId: "html-296-elsie",
+            storageBucket: "html-296-elsie.appspot.com",
+            messagingSenderId: "277796278417"
+        };
+        firebase.initializeApp(config);
+        var db = firebase.firestore();
+    </script>
+    <script src="index.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcTl3LDEmVUC_l1WcwyBlaMMoUBwmHBk&callback=initMap">
+    </script>
+</body>
+
+</html>
