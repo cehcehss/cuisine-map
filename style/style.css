@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: "微軟正黑體";
 }
 
 html,
@@ -7,6 +8,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #1e303d;
+    font-family: "微軟正黑體";
 }
 
 .map-container {

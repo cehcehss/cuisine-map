@@ -19,7 +19,7 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style/style.css">
 </head>
 
 <body>
@@ -82,6 +82,16 @@
                             <label for="content">評論</label>
                             <input type="text" class="form-control" id="content">
                         </div>
+                        <label>上傳照片</label>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="choose-file">
+                                <label class="custom-file-label" for="inputGroupFile02"></label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="upload-file">Upload</span>
+                            </div>
+                        </div>
                         <button type="button" class="btn btn-info" id="add-btn">新增</button>
                     </div>
                 </div>
@@ -105,8 +115,8 @@
         firebase.initializeApp(config);
         var db = firebase.firestore();
     </script>
-    <script src="index.js"></script>
-    <script src="chart.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/chart.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzcTl3LDEmVUC_l1WcwyBlaMMoUBwmHBk&callback=initMap">
     </script>
 </body>

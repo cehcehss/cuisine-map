@@ -78,7 +78,7 @@ function initMap() {
                 "featureType": "road",
                 "elementType": "labels.text.fill",
                 "stylers": [{
-                    "color": "#94a5a6"
+                    "color": "#677374"
                 }]
             },
             {
@@ -106,16 +106,16 @@ function initMap() {
     });
     var icons = {
         coffee: {
-            icon: './images/coffee.png'
+            icon: '../style/images/coffee.png'
         },
         spaghetti: {
-            icon: './images/spaghetti.png'
+            icon: '../style/images/spaghetti.png'
         },
         japanese: {
-            icon: './images/sushi.png'
+            icon: '../style/images/sushi.png'
         },
         other: {
-            icon: './images/pin.png'
+            icon: '../style/images/pin.png'
         }
     };
     //onsnapshot
@@ -124,7 +124,8 @@ function initMap() {
             if (change.type === "added") {
                 var shop = change.doc.data();
                 var contentString = `<h5>${shop.name}</h5>
-                                    <p>${shop.content}</p>`;
+                                    <p>${shop.content}</p>
+                                    <img src="https://farm5.static.flickr.com/4432/36875161212_2ccc6efa57_b.jpg" width="350px">`;
 
                 var infowindow = new google.maps.InfoWindow({
                     content: contentString
@@ -142,15 +143,14 @@ function initMap() {
 
                         var latlng = results[0].geometry.location;
                         map.setCenter(latlng);
-                        // alert(latlng);
                         marker = new google.maps.Marker({
                             position: latlng,
                             map: map,
                             icon: icons[`${shop.type}`].icon,
                             title: `${shop.name}`
                         });
+                        infowindow.open(map, this.marker);
                         marker.addListener('click', function () {
-                            // infowindow.close();
                             infowindow.open(map, marker);
                         });
                     }
@@ -164,7 +164,6 @@ function initMap() {
 }
 
 
-//click add btn 
 $("#add-btn").on("click", function () {
     saveData();
 });
