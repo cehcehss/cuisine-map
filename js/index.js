@@ -106,16 +106,16 @@ function initMap() {
     });
     var icons = {
         coffee: {
-            icon: '../style/images/coffee.png'
+            icon: 'https://elsiehsieh.github.io/cuisine-map/style/images/coffee.png'
         },
         spaghetti: {
-            icon: '../style/images/spaghetti.png'
+            icon: 'https://elsiehsieh.github.io/cuisine-map/style/images/spaghetti.png'
         },
         japanese: {
-            icon: '../style/images/sushi.png'
+            icon: 'https://elsiehsieh.github.io/cuisine-map/style/images/sushi.png'
         },
         other: {
-            icon: '../style/images/pin.png'
+            icon: 'https://elsiehsieh.github.io/cuisine-map/style/images/pin.png'
         }
     };
     //onsnapshot
