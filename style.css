@@ -6,6 +6,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+    background-color: #1e303d;
 }
 
 .map-container {
@@ -18,4 +19,8 @@ body {
 
 #form-section {
     margin: 50px 0;
+}
+
+label {
+    color: #eeeeee;
 }
