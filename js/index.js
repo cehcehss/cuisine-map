@@ -123,9 +123,13 @@ function initMap() {
         snapshot.docChanges.forEach(function (change) {
             if (change.type === "added") {
                 var shop = change.doc.data();
+                if (shop.imgURL == null) {
+
+                    shop.imgURL = "https://firebasestorage.googleapis.com/v0/b/html-296-elsie.appspot.com/o/fork.png?alt=media&token=4bc8f964-cf0b-4989-8e45-65d1abdad2f1";
+                }
                 var contentString = `<h5>${shop.name}</h5>
                                     <p>${shop.content}</p>
-                                    <img src="https://farm5.static.flickr.com/4432/36875161212_2ccc6efa57_b.jpg" width="350px">`;
+                                    <img src="${shop.imgURL}" width="350px">`;
 
                 var infowindow = new google.maps.InfoWindow({
                     content: contentString
@@ -163,36 +167,67 @@ function initMap() {
 
 }
 
+var collectionRef = db.collection("foodmap");
+var storageRef = storage.ref();
+var file;
+
+$("#file").change(function (e) {
+    file = e.target.files[0];
+    console.log($("#file").val());
+    $(this).next('.custom-file-label').html(file.name);
+    // $('.custom-file-label').html(file.name);
+
+});
+console.log(file);
 
 $("#add-btn").on("click", function () {
-    saveData();
-});
-var collectionRef = db.collection("foodmap");
+    console.log($("#file").val());
 
-function saveData() {
+    getValue();
+
+});
+
+function getValue() {
+    var shop;
     var $name = $("#name").val();
     var $address = $("#address").val();
     var $content = $("#content").val();
     var $type = $("select[id=type]").val();
+    var imgURL;
 
-    var shop = {
-        name: $name,
-        address: $address,
-        content: $content,
-        type: $type
-    };
 
-    collectionRef.add(shop)
-        .then(function (docRef) {
-            console.log("Document written with ID: ", docRef.id);
-            $(".form-control").val("");
-            // alert("新增成功");
-        })
-        .catch(function (error) {
-            console.error("Error adding document: ", error);
+    function saveData() {
+        shop = {
+            name: $name,
+            address: $address,
+            content: $content,
+            type: $type,
+            imgURL: imgURL
+        };
+        console.log(shop);
+
+        collectionRef.add(shop)
+            .then(function (docRef) {
+                console.log("Document written with ID: ", docRef.id);
+                $(".form-control").val("");
+                alert("新增成功");
+            })
+            .catch(function (error) {
+                console.error("Error adding document: ", error);
+            });
+    }
+
+    if ($("#file").val() == '') {
+        imgURL = "https://firebasestorage.googleapis.com/v0/b/html-296-elsie.appspot.com/o/fork.png?alt=media&token=4bc8f964-cf0b-4989-8e45-65d1abdad2f1";
+        saveData();
+    } else {
+        var imageRef = storageRef.child(file.name);
+        imageRef.put(file).then(function (snapshot) {
+            console.log(snapshot.downloadURL);
+            imgURL = snapshot.downloadURL;
+            saveData();
         });
-
-
+    }
     //取得shop-count集合中type文件資料
     db.collection("shop-count").doc($type)
         .get().then(function (doc) {
